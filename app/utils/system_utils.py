@@ -191,14 +191,17 @@ class SystemUtils:
         Rclone移动
         """
         try:
+            proxy = 'socks5://172.17.0.1:40000'
+            os.environ['http_proxy'] = proxy
+            os.environ['https_proxy'] = proxy
             src = os.path.normpath(src)
             dest = dest.replace("\\", "/")
             retcode = subprocess.run(['rclone', 'moveto',
                                       src,
-                                      f'NASTOOL:{dest}',
-                                      '--tpslimit', '1',
-                                      '--drive-upload-cutoff', '1000T'],
+                                      f'NASTOOL:{dest}'],
                                      startupinfo=SystemUtils.__get_hidden_shell()).returncode
+            os.environ.pop('http_proxy', None)
+            os.environ.pop('https_proxy', None)
             return retcode, ""
         except Exception as err:
             ExceptionUtils.exception_traceback(err)
@@ -210,14 +213,17 @@ class SystemUtils:
         Rclone复制
         """
         try:
+            proxy = 'socks5://172.17.0.1:40000'
+            os.environ['http_proxy'] = proxy
+            os.environ['https_proxy'] = proxy
             src = os.path.normpath(src)
             dest = dest.replace("\\", "/")
             retcode = subprocess.run(['rclone', 'copyto',
                                       src,
-                                      f'NASTOOL:{dest}',
-                                      '--tpslimit', '1',
-                                      '--drive-upload-cutoff', '1000T'],
+                                      f'NASTOOL:{dest}'],
                                      startupinfo=SystemUtils.__get_hidden_shell()).returncode
+            os.environ.pop('http_proxy', None)
+            os.environ.pop('https_proxy', None)
             return retcode, ""
         except Exception as err:
             ExceptionUtils.exception_traceback(err)
