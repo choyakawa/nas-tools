@@ -191,7 +191,7 @@ class SystemUtils:
         Rclone移动
         """
         try:
-            proxy = 'socks5h://warp:9091'
+            proxy = 'socks5://warp:9091'
             os.environ['http_proxy'] = proxy
             os.environ['https_proxy'] = proxy
             src = os.path.normpath(src)
@@ -213,7 +213,7 @@ class SystemUtils:
         Rclone复制
         """
         try:
-            proxy = 'socks5h://warp:9091'
+            proxy = 'socks5://warp:9091'
             os.environ['http_proxy'] = proxy
             os.environ['https_proxy'] = proxy
             src = os.path.normpath(src)
