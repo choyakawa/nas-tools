@@ -196,7 +196,7 @@ class SystemUtils:
             retcode = subprocess.run(['rclone', 'moveto',
                                       src,
                                       f'NASTOOL:{dest}',
-                                      '--tpslimit', '1'
+                                      '--tpslimit', '1',
                                       '--drive-upload-cutoff', '1000T'],
                                      startupinfo=SystemUtils.__get_hidden_shell()).returncode
             return retcode, ""
@@ -215,7 +215,7 @@ class SystemUtils:
             retcode = subprocess.run(['rclone', 'copyto',
                                       src,
                                       f'NASTOOL:{dest}',
-                                      '--tpslimit', '1'
+                                      '--tpslimit', '1',
                                       '--drive-upload-cutoff', '1000T'],
                                      startupinfo=SystemUtils.__get_hidden_shell()).returncode
             return retcode, ""
