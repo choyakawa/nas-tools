@@ -195,7 +195,8 @@ class SystemUtils:
             dest = dest.replace("\\", "/")
             retcode = subprocess.run(['rclone', 'moveto',
                                       src,
-                                      f'NASTOOL:{dest}'],
+                                      f'NASTOOL:{dest}',
+                                      '--drive-upload-cutoff', '1000T'],
                                      startupinfo=SystemUtils.__get_hidden_shell()).returncode
             return retcode, ""
         except Exception as err:
